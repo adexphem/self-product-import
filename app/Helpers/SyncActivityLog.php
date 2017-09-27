@@ -52,7 +52,7 @@ class SyncActivityLog
             'headers' => [
                 'host' => $headers['host'],
                 'user-agent' => $headers['user-agent'],
-                'referer' => $headers['referer']
+                'user-referer' => $headers['referer']
             ],
             'data' => $data
         ]);
