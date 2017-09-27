@@ -1,0 +1,44 @@
+{
+  "env": {
+    "test": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "node": "current"
+          }
+        }]
+      ],
+      "plugins": [
+        ["module-resolver", {
+          "root": ["./"],
+          "alias": {
+            "test": "./test",
+            "@": "./resources/assets/js"
+          }
+        }]
+      ]
+    },
+    "development": {
+      "presets": [
+        ["env", {
+          "modules": false,
+          "targets": {
+            "browsers": "> 2%",
+            "uglify": true
+          }
+        }]
+      ]
+    },
+    "production": {
+      "presets": [
+        ["env", {
+          "modules": false,
+          "targets": {
+            "browsers": "> 2%",
+            "uglify": true
+          }
+        }]
+      ]
+    }
+  }
+}

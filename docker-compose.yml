@@ -1,0 +1,37 @@
+version: '2'
+services:
+    app:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - "8889:80" # web
+            - "444:443" # ssl
+        links:
+            - database
+            - cache
+        environment:
+            - "DB_PORT=3306"
+            - "DB_HOST=database"
+            - "REDIS_PORT=6379"
+            - "REDIS_HOST=cache"
+        container_name: weebly-mindbody-app
+    database:
+        image: mysql:5.7.13
+        environment:
+            - "MYSQL_ROOT_PASSWORD=root"
+            - "MYSQL_DATABASE=storesyncdb"
+        ports:
+            - "3319:3306"
+        volumes:
+            - ./docker/mysql:/var/lib/mysql
+        container_name: weebly-mindbody-db
+    cache:
+        image: redis:3.0
+        ports:
+            -   "63791:6379"
+        volumes:
+            - ./docker/redis:/data
+        container_name: weebly-mindbody-cache

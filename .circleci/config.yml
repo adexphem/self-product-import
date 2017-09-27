@@ -1,0 +1,53 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      # using custom image, see .circleci/images/primary/Dockerfile
+      - image: circleci/php:7.1-browsers
+      - image: mysql:5.7.13
+        environment:
+          MYSQL_ROOT_PASSWORD: ubuntu
+          MYSQL_DATABASE: circle_test
+    working_directory: ~/laravel
+    environment:
+        TEST_RESULTS_DIR: /tmp/test-results
+    steps:
+        - checkout
+        - run: sudo apt install -y libsqlite3-dev
+        - run:
+            name: "Check Composer version"
+            command: composer --version
+        - run: composer self-update
+        - restore_cache:
+            keys:
+                - composer-v1-{{ checksum "composer.json" }}
+                - composer-v1-
+        - save_cache:
+            key: composer-v1-{{ checksum "composer.json" }}
+            paths:
+                - vendor
+        - run:
+            name: "First create test result folder, then run test and log result"
+            command: |
+                mkdir -p ~/test-results
+                php vendor/bin/phpunit --log-junit ~/test-results/result.xml tests
+            when: always
+        - store_artifacts:
+            path: ~/test-results
+        - store_test_results:
+            path: ~/test-results
+        - run:
+            name: Setup Heroku
+            command: bash .circleci/setup-heroku.sh
+        - add_ssh_keys:
+            name: Adding SSH Key needed for deployment to heroku
+            fingerprints:
+                - "27:5b:57:3e:9a:45:cb:f5:5e:0a:13:fe:e3:78:c6:7b"
+        - deploy:
+            name: Deploy Master to Heroku
+            command: |
+                if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                    git push heroku master
+                    heroku open
+                fi

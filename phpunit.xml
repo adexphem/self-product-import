@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="bootstrap/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Feature Tests">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+
+        <testsuite name="Unit Tests">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="coverage"/>
+    </logging>
+    <php>
+
+        <env name="WEEBLY_MINDBODY_CLIENT_ID" value="APP_TEST_ID"/>
+        <env name="WEEBLY_MINDBODY_CLIENT_SECRET" value="APP_TEST_SECRET"/>
+        
+        <env name="WEEBLY_SHAPEWAYS_CLIENT_ID" value="APP_TEST_ID"/>
+        <env name="WEEBLY_SHAPEWAYS_CLIENT_SECRET" value="APP_TEST_SECRET"/>
+    
+        <env name="JWT_APP_SIGNATURE" value="HS256"/>
+        <env name="WEEBLY_OAUTH_CALLBACK_URL" value="https://www.weebly.com/app-center/oauth/authorize"/>
+        <env name="WEEBLY_ACCESS_TOKEN_URL" value="https://www.weebly.com/app-center/oauth/access_token"/>
+        
+        <env name="SHAPEWAYS_API_HOST" value="https://api.shapeways-test.dev"/>
+
+        <env name="SHAPEWAYS_API_HOST" value="https://api.shapeways-test.dev"/>
+        <env name="SHAPEWAYS_CLIENT_ID" value="SHAPEWAYS_TEST_CLIENT_ID"/>
+        <env name="SHAPEWAYS_CLIENT_SECRET" value="SHAPEWAYS_TEST_CLIENT_SECRET"/>
+        <env name="SHAPEWAYS_CLIENT_SECRET" value="SHAPEWAYS_TEST_CLIENT_SECRET"/>
+
+        <env name="MINDBODY_API_HOST" value="https://api.mindbody-test.dev"/>
+        <env name="MINDBODY_APP_SOURCE_NAME" value="__MINDBODY_TEST_SOURCENAME__"/>
+        <env name="MINDBODY_APP_PASSWORD" value="__MINDBODY_TEST_PASSWORD__"/>
+        
+        <env name="APP_ENV" value="testing"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+
+        <env name="DB_CONNECTION" value="testing"/>
+        <env name="APP_CIPHER" value="AES-256-CBC"/>
+        <env name="APP_KEY" value="base64:LrtnMuTze0CCZK/TBBj773xi9XpIAD20d2JLcv4duEU="/>
+    </php>
+</phpunit>
