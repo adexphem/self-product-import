@@ -51,8 +51,7 @@ class SyncActivityLog
             'method' => $method,
             'headers' => [
                 'host' => $headers['host'],
-                'user-agent' => $headers['user-agent'],
-                'referer' => $headers['referer']
+                'user-agent' => $headers['user-agent']
             ],
             'data' => $data
         ]); // ?? Refactor - use a RawRequest class
