@@ -15,5 +15,4 @@ npm-debug.log
 /docker/redis/*.*
 !/docker/000-default.conf
 !/docker/001-default-ssl.conf
-/composer.lock
 /coverage

@@ -54,16 +54,6 @@ class OAuthController extends Controller
         $response = $this->weeblyRepository->getAcessToken($guzzleClient, $request->authorization_code, $sourceConnector);
         $responseBody = $this->weeblyRepository->getResponseBody($response);
 
-        $redisData = [
-            'site_id' => $request->site_id,
-            'user_id'   => $request->user_id,
-            'weebly_jwt'   => ($request->jwt) ? $request->jwt : "",
-            'weebly_access_token'   => $responseBody->access_token,
-            'source_access_token'   => "",
-            'source_id'   => ""
-        ];
-
-        $redisClient->store($redisData);
         $logData = $this->logger->formatLogData($request, Synclog::SOURCE_TYPE,
             Synclog::WEEBLY_PHASE_TWO_ACTION, Synclog::ACCESS_TOKEN_GENERATED);
         $this->logger->log($logData);
