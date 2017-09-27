@@ -55,8 +55,8 @@ class OAuthController extends Controller
 
         $logData = $this->logger->formatLogData($request, Synclog::SOURCE_TYPE,
             Synclog::WEEBLY_PHASE_TWO_ACTION, Synclog::ACCESS_TOKEN_GENERATED);
-        $this->logger->log($logData);
 dd($request, $response, $responseBody, $logData);
+        $this->logger->log($logData);
 
         SitesRepository::updateOrCreate($request->site_id, $request->user_id, $responseBody->access_token);
         UsersRepository::firstOrCreate($request->site_id, $request->user_id);
