@@ -159,7 +159,7 @@ class WeeblyRepository {
      */
     public function updateDashboardCard (GuzzleClient $guzzleClient, Site $site, string $dashboardCardId, array $cardUpdate) : GuzzleHttpResponse {
         $endpoint = self::$apiHost. "/v1/user/sites/" .$site->weebly_site_id. "/cards/" .$dashboardCardId;
-dd($cardUpdate);
+dd($endpoint, $cardUpdate);
         return $guzzleClient->request("PATCH", $endpoint, [
             "headers" => [
                 "Accept" => self::WEEBLY_ACCEPT_HEADER,
