@@ -46,8 +46,6 @@ class SyncActivityLog
         $data = $request->all();
         $referrer = $headers['referer'];
 
-        dd($headers);
-
         $rawRequest = json_encode([
             'ip' => $ip,
             'url' => $url,
