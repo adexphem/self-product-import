@@ -180,7 +180,7 @@ class OAuthController extends Controller
                 // update dashboard card with synced products number
                 if ($updated) {
                     $numberOfProductsSynced = $source->synced_products_no;
-                    $update = $sourceConnector->dashboardSyncedCard($numberOfProductsSynced, url("/"));
+                    $update = $sourceConnector->dashboardSyncedCard($numberOfProductsSynced, secure_url("/"));
                     $response = $this->weeblyRepository->updateDashboardCard($guzzleClient, $site, $sourceConnector->getDashboardCardId(), $update);
                     $newDashboardCard = $this->weeblyRepository->getResponseBody($response);
                 }
