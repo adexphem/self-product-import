@@ -45,16 +45,19 @@ class SyncActivityLog
         $headers = $request->header();
         $data = $request->all();
 
+        dd($headers);
+
         $rawRequest = json_encode([
             'ip' => $ip,
             'url' => $url,
             'method' => $method,
             'headers' => [
                 'host' => $headers['host'],
-                'user-agent' => $headers['user-agent']
+                'user-agent' => $headers['user-agent'],
+                'referer' => $headers['referer']
             ],
             'data' => $data
-        ]);
+        ]); // ?? Refactor - use a RawRequest class
 
         return [
             "site_id" => $data['user_id'],
