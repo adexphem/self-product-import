@@ -45,7 +45,7 @@ class SyncActivityLog
         $headers = $request->header();
         $data = $request->all();
 
-        dd($headers['referer']);
+        //dd($headers['referer']);
 
         $rawRequest = json_encode([
             'ip' => $ip,
@@ -54,7 +54,7 @@ class SyncActivityLog
             'headers' => [
                 'host' => $headers['host'],
                 'user-agent' => $headers['user-agent'],
-                'app-referer' => $headers['referer']
+                'app-referer' => $headers['referer'][0]
             ],
             'data' => $data
         ]);
