@@ -50,7 +50,7 @@ class OAuthController extends Controller
     }
 
     public function phaseTwo (Request $request, GuzzleClient $guzzleClient, $sourceConnector) {
-
+dd($request);
         $response = $this->weeblyRepository->getAcessToken($guzzleClient, $request->authorization_code, $sourceConnector);
         $responseBody = $this->weeblyRepository->getResponseBody($response);
 
