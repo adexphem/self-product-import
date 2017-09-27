@@ -143,7 +143,7 @@ class SourcesController extends Controller
         $productsSyncedOn = $source->updated_at->format('l, F jS, Y');
 
         $syncMsg = ($numberOfProductsSynced > 0) ? $numberOfProductsSynced ." new product(s) were synchronized successfully." : $syncMsg;
-        $update = $sourceConnector->dashboardSyncedCard($numberOfProductsSynced, url("/"));
+        $update = $sourceConnector->dashboardSyncedCard($numberOfProductsSynced, secure_url("/"));
         $this->weeblyRepository->updateDashboardCard($guzzleClient, $site, $sourceConnector->cardId, $update);
 
         switch ($sourceConnector->name) {
