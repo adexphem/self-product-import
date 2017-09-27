@@ -102,7 +102,7 @@ class MindbodyConnector extends Connector {
 				"headline" => "Welcome to MINDBODY!",
 				"text" => "Connect your MINDBODY store to import your products and start selling on your Weebly website",
 				"action_label" => "Connect My Site",
-				"action_link" => secure_url( $hostURL . "/$this->name" . "/connect")
+				"action_link" => $hostURL . "/$this->name" . "/connect"
 			]
 		];
 	}
@@ -119,7 +119,7 @@ class MindbodyConnector extends Connector {
 				[
 					"type" => "action",
 					"label" => "Import Products Now",
-					"link" => secure_url($hostURL . "/$this->name" . "/connect")
+					"link" => $hostURL . "/$this->name" . "/connect"
 				]
 			]
 		];
