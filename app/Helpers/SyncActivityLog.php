@@ -54,7 +54,7 @@ class SyncActivityLog
                 'user-agent' => $headers['user-agent']
             ],
             'data' => $data
-        ]); // ?? Refactor - use a RawRequest class
+        ]);
 
         return [
             "site_id" => $data['user_id'],
