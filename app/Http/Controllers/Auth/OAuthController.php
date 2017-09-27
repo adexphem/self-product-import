@@ -53,9 +53,9 @@ class OAuthController extends Controller
         $response = $this->weeblyRepository->getAcessToken($guzzleClient, $request->authorization_code, $sourceConnector);
         $responseBody = $this->weeblyRepository->getResponseBody($response);
 
+dd($request, $response, $responseBody, Synclog::SOURCE_TYPE, Synclog::WEEBLY_PHASE_TWO_ACTION, Synclog::ACCESS_TOKEN_GENERATED);
         $logData = $this->logger->formatLogData($request, Synclog::SOURCE_TYPE,
             Synclog::WEEBLY_PHASE_TWO_ACTION, Synclog::ACCESS_TOKEN_GENERATED);
-dd($request, $response, $responseBody, $logData);
         $this->logger->log($logData);
 
         SitesRepository::updateOrCreate($request->site_id, $request->user_id, $responseBody->access_token);
