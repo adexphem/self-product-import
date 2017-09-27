@@ -25,6 +25,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::pattern('source_connector', '(shapeways|mindbody)');
+        \URL::forceSchema('https');
 
         parent::boot();
 
