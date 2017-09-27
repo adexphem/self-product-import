@@ -49,7 +49,7 @@ class OAuthController extends Controller
         return redirect()->to($this->weeblyRepository->getCallbackQuery($request->all(), $sourceConnector));
     }
 
-    public function phaseTwo (Request $request, GuzzleClient $guzzleClient, RedisClient $redisClient, $sourceConnector) {
+    public function phaseTwo (Request $request, GuzzleClient $guzzleClient, $sourceConnector) {
 
         $response = $this->weeblyRepository->getAcessToken($guzzleClient, $request->authorization_code, $sourceConnector);
         $responseBody = $this->weeblyRepository->getResponseBody($response);
